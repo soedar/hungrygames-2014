@@ -1,0 +1,35 @@
+.tabcontent {
+    border: 1px solid #ccc;
+    border-top: 0;
+    padding: 30px;
+}
+.event-list, .score-list, .winners-list, .config-list {
+    list-style-type: none;
+    margin: 5px;
+    padding: 0;
+}
+
+.score-winner {
+    font-size: 1.4em;
+}
+
+.winner {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.winners-list li {
+    font-size: 1.6em;
+}
+
+.time-pagination {
+    margin: 5px;
+}
+
+.nav, .pagination, .carousel, .panel-title, .tooltip a { 
+    cursor: pointer; 
+}
+
+.index-row {
+    margin-bottom: 30px;
+}

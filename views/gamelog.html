@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html lang="en" ng-app="gameLogViewer">
+<head>
+
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular.min.js"></script>
+<script src="static/js/ui-bootstrap-tpls-0.10.0.min.js"></script>
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
+
+<script src="static/js/gamelog.js"></script>
+<link rel="stylesheet" href="static/css/gamelog.css">
+</head>
+
+<body ng-controller="GetLogController">
+<div class="container">
+    <div class="row">
+        <tabset>
+            <tab heading="Overview">
+                <div class="tabcontent">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h2>Tributes</h2>
+                            <ul class="score-list">
+                                <li ng-repeat="tribute in gameLog.tributes"><i class="fa fa-user"> {{tribute}}</i></li>
+                            </ul>
+                        </div>
+
+                        <div class="col-md-4">
+                            <h2 ng-show="gameLog.winners.length > 1">Winners</h2>
+                            <h2 ng-hide="gameLog.winners.length > 1">Winner</h2>
+                            <ul class="winners-list">
+                                <li ng-repeat="winner in gameLog.winners"><i class="fa fa-star"> {{winner}}</i></li>
+                            </ul>
+                        </div>
+
+                        <div class="col-md-4">
+                            <h2>Final Score</h2>
+                            <div score-list scores="{{gameLog.scores}}"></div>
+                        </div>
+
+  
+                    </div>
+                </div>
+            </tab>
+
+            <tab ng-repeat="roundInfo in roundsInfo" heading="{{roundInfo.header}}">
+                <div class="tabcontent">
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-1">
+                        <h3>Score</h3>
+                        <div score-list scores="{{roundInfo.scores}}"></div>
+
+                        <h3>Config</h3>
+                        <div config-list config="{{roundInfo.config}}"></div>
+                        </div>
+
+                        <div class="col-md-7">
+                            <h3>Game Log</h3>
+                            <h4>Turn</h4>
+                            <pagination total-items="roundInfo.history.length" items-per-page="1" page="roundInfo.page" max-size="9" class="pagination-sm time-pagination" rotate="false" direction-links="false"></pagination>
+
+                            <h4>Events</h4>
+                            <ul class="event-list">
+                                <li ng-repeat="event in roundInfo.history[roundInfo.page-1]['events']">
+                                    <div event-history event="{{event}}"></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </tab>
+        </tabset>
+    </div>
+</div>
+</body>
+
+</html>

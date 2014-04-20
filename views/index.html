@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html lang="en" ng-app="index">
+<head>
+
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.8/angular.min.js"></script>
+<script src="static/js/ui-bootstrap-tpls-0.10.0.min.js"></script>
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
+
+<script src="static/js/index.js"></script>
+<link rel="stylesheet" href="static/css/gamelog.css">
+</head>
+
+<body ng-controller="indexController">
+<div class="container">
+    <h1 class="text-center">CS1010S: The Hungry Games II</h1>
+
+    <div ng-repeat="groupedData in indexData">
+        <h2>{{groupedData.name}}</h2>
+        <div ng-repeat="split in groupedData.data" class="row index-row">
+            <div ng-repeat="group in split" class="col-md-4">
+                <ul class="score-list">
+                    <li ng-repeat="score in group.scores" ng-class="{winner: $index < groupedData.highlight}"><i class="fa fa-user"></i> {{score[0]}}: {{score[1]}}</li>
+                </ul>
+                <a href="gamelog?game={{group.file}}">View Game Log</a>
+            </div>
+        </div>
+        <hr>
+    </div>
+</div>
+
+</body>
+
+</html>
