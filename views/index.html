@@ -17,15 +17,21 @@
 <body ng-controller="indexController">
 <div class="container">
     <h1 class="text-center">The Hungry Games II</h1>
+    <hr>
 
-    <div ng-repeat="groupedData in indexData">
+    <div ng-repeat="groupedData in indexData" class="group">
         <h2>{{groupedData.name}}</h2>
         <div ng-repeat="split in groupedData.data" class="row index-row">
             <div ng-repeat="group in split" class="col-md-4">
-                <ul class="score-list">
-                    <li ng-repeat="score in group.scores" ng-class="{winner: $index < groupedData.highlight}"><i class="fa fa-user"></i> {{score[0]}}</li>
-                </ul>
-                <a href="gamelog?game={{group.file}}">View Game Log</a>
+                <div class="game">
+                    <h3 class="game-name center">Game </h3>
+                    <ul class="score-list center">
+                        <li ng-repeat="score in group.scores" ng-class="{winner: $index < groupedData.highlight}">{{score[0]}}</li>
+                    </ul>
+                    <p class="center">
+                        <a class="btn btn-default" href="gamelog?game={{group.file}}">View Game Log</a>
+                    </p>
+                </div>
             </div>
         </div>
         <hr>

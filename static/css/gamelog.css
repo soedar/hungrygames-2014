@@ -1,12 +1,47 @@
+h2 {
+    color: #09c;
+    text-align: center;
+}
+
+.center {
+    text-align: center;
+}
+
 .tabcontent {
     border: 1px solid #ccc;
     border-top: 0;
     padding: 30px;
 }
+
 .event-list, .score-list, .winners-list, .config-list {
     list-style-type: none;
     margin: 5px;
     padding: 0;
+}
+
+.group {
+    counter-reset: game-counter;
+}
+
+.game {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+    padding-top: 0;
+}
+
+.game:hover {
+    border-color: #09c;
+}
+
+.game-name:after {
+    content: counter(game-counter);
+}
+
+.game-name {
+    color: #056687;
+    counter-increment: game-counter;
 }
 
 .score-winner {
