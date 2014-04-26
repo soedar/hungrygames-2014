@@ -2,6 +2,12 @@ html, body {
     height: 100%;
 }
 
+.logo {
+    display: block;
+    margin: 20px auto;
+    width: 200px;
+}
+
 h2 {
     color: #09c;
     text-align: center;
