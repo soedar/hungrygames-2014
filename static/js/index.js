@@ -3,12 +3,12 @@ var index = angular.module('index', ['ui.bootstrap']);
 index.controller('indexController', function($scope, $http) {
     var indexData = [];
 
-    var qual_1 = {'name': 'Qualifier 1',
+    var qual_1 = {'name': 'Qualifiers 1',
     'highlight': 2,
     'matchfile': 'quals_1/matches.json'
     };
 
-    var qual_2 = {'name': 'Qualifier 2',
+    var qual_2 = {'name': 'Qualifiers 2',
     'highlight': 2,
     'matchfile': 'quals_2/matches.json'
     };

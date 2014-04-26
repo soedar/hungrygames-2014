@@ -11,79 +11,88 @@
 
 <script src="static/js/gamelog.js"></script>
 <link rel="stylesheet" href="static/css/gamelog.css">
-<title>CS1010S: The Hungry Games II</title>
+<title>CS1010S: The Hungry Games II | Game</title>
 </head>
 
 <body ng-controller="GetLogController">
-<div class="container">
-    <div class="row">
-        <tabset>
-            <tab heading="Overview">
-                <div class="tabcontent">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <h2>Tributes</h2>
-                            <ul class="score-list">
-                                <li ng-repeat="tribute in gameLog.tributes"><i class="fa fa-user"> {{tribute}}</i></li>
-                            </ul>
-                        </div>
-
-                        <div class="col-md-4">
-                            <h2 ng-show="gameLog.winners.length > 1">Winners</h2>
-                            <h2 ng-hide="gameLog.winners.length > 1">Winner</h2>
-                            <ul class="winners-list">
-                                <li ng-repeat="winner in gameLog.winners"><i class="fa fa-star"> {{winner}}</i></li>
-                            </ul>
-                        </div>
-
-                        <div class="col-md-4">
-                            <h2>Final Score</h2>
-                            <div score-list scores="{{gameLog.scores}}"></div>
-                        </div>
-
-  
-                    </div>
-                </div>
-            </tab>
-
-            <tab ng-repeat="roundInfo in roundsInfo" heading="{{roundInfo.header}}">
-                <div class="tabcontent">
-                    <div class="row">
-                        <div class="col-md-4 col-md-offset-1">
-                        <h3>Score</h3>
-                        <div score-list scores="{{roundInfo.scores}}"></div>
-
-                        <h3>Config</h3>
-                        <div config-list config="{{roundInfo.config}}"></div>
-                        </div>
-
-                        <div class="col-md-7">
-                            <h3>Game Log</h3>
-                            <h4>Turn</h4>
-                            <pagination total-items="roundInfo.history.length" items-per-page="1" page="roundInfo.page" max-size="9" class="pagination-sm time-pagination" rotate="false" direction-links="false"></pagination>
-
-                            <h4>Events</h4>
-                            <ul class="event-list">
-                                <li ng-repeat="event in roundInfo.history[roundInfo.page-1]['events']">
-                                    <div event-history event="{{event}}"></div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
-            </tab>
-        </tabset>
+<div class="loading center" ng-show="loading">
+    <div class="loading-inner">
+        <img class="spinner" src="static/img/loader.gif">
+        <h5>Loading data</h5>
     </div>
 </div>
+<div ng-show="!loading">
+    <div class="container">
+        <div class="row">
+            <tabset>
+                <tab heading="Overview">
+                    <div class="tabcontent">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h2>Tributes</h2>
+                                <ul class="score-list">
+                                    <li ng-repeat="tribute in gameLog.tributes"><i class="fa fa-user"> {{tribute}}</i></li>
+                                </ul>
+                            </div>
 
-<footer>
-    <div class="row">
-        <div class="col-md-12 text-center">
-        CS1010S 2014/2 &middot; Hungry Games &middot; <a href="https://github.com/soedar">Soedarsono</a>
+                            <div class="col-md-4">
+                                <h2 ng-show="gameLog.winners.length > 1">Winners</h2>
+                                <h2 ng-hide="gameLog.winners.length > 1">Winner</h2>
+                                <ul class="winners-list">
+                                    <li ng-repeat="winner in gameLog.winners"><i class="fa fa-star"> {{winner}}</i></li>
+                                </ul>
+                            </div>
+
+                            <div class="col-md-4">
+                                <h2>Final Score</h2>
+                                <div score-list scores="{{gameLog.scores}}"></div>
+                            </div>
+
+      
+                        </div>
+                    </div>
+                </tab>
+
+                <tab ng-repeat="roundInfo in roundsInfo" heading="{{roundInfo.header}}">
+                    <div class="tabcontent">
+                        <div class="row">
+                            <div class="col-md-4 col-md-offset-1">
+                            <h3>Score</h3>
+                            <div score-list scores="{{roundInfo.scores}}"></div>
+
+                            <h3>Config</h3>
+                            <div config-list config="{{roundInfo.config}}"></div>
+                            </div>
+
+                            <div class="col-md-7">
+                                <h3>Game Log</h3>
+                                <h4>Turn</h4>
+                                <pagination total-items="roundInfo.history.length" items-per-page="1" page="roundInfo.page" max-size="9" class="pagination-sm time-pagination" rotate="false" direction-links="false"></pagination>
+
+                                <h4>Events</h4>
+                                <ul class="event-list">
+                                    <li ng-repeat="event in roundInfo.history[roundInfo.page-1]['events']">
+                                        <div event-history event="{{event}}"></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </tab>
+            </tabset>
         </div>
     </div>
-</footer>
+
+    <footer>
+        <div class="row">
+            <div class="col-md-12 text-center">
+            <!-- Hack for homepage url. I have no idea why href="/" doesn't work for this page -->
+            CS1010S 2014/2 &middot; <a onclick="window.location = '/';">Hungry Games</a> &middot; <a target="_blank" href="https://github.com/soedar">Soedarsono</a>
+            </div>
+        </div>
+    </footer>
+</div>
 </body>
 
 </html>

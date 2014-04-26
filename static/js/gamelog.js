@@ -3,6 +3,7 @@ var gameLogViewer = angular.module('gameLogViewer', ['ui.bootstrap']).config(['$
 }]);
 
 gameLogViewer.controller('GetLogController', function($scope, $http, $location) {
+    $scope.loading = true;
     function loadPageData(data) {
         $scope.gameLog = data;
         $scope.roundsInfo = [];
@@ -35,7 +36,10 @@ gameLogViewer.controller('GetLogController', function($scope, $http, $location) 
 
         $scope.gameLog.tributes = tributes;
         $scope.gameLog.winners = winners;
-
+        setTimeout(function() {
+            $scope.loading = false;
+            $scope.$apply();
+        }, 500);
     }
     
     var game = $location.search().game;
