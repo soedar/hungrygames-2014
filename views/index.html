@@ -11,18 +11,19 @@
 
 <script src="static/js/index.js"></script>
 <link rel="stylesheet" href="static/css/gamelog.css">
+<title>CS1010S: The Hungry Games II</title>
 </head>
 
 <body ng-controller="indexController">
 <div class="container">
-    <h1 class="text-center">CS1010S: The Hungry Games II</h1>
+    <h1 class="text-center">The Hungry Games II</h1>
 
     <div ng-repeat="groupedData in indexData">
         <h2>{{groupedData.name}}</h2>
         <div ng-repeat="split in groupedData.data" class="row index-row">
             <div ng-repeat="group in split" class="col-md-4">
                 <ul class="score-list">
-                    <li ng-repeat="score in group.scores" ng-class="{winner: $index < groupedData.highlight}"><i class="fa fa-user"></i> {{score[0]}}: {{score[1]}}</li>
+                    <li ng-repeat="score in group.scores" ng-class="{winner: $index < groupedData.highlight}"><i class="fa fa-user"></i> {{score[0]}}</li>
                 </ul>
                 <a href="gamelog?game={{group.file}}">View Game Log</a>
             </div>
@@ -30,6 +31,14 @@
         <hr>
     </div>
 </div>
+
+<footer>
+    <div class="row">
+        <div class="col-md-12 text-center">
+        CS1010S 2014/2 &middot; Hungry Games &middot; <a href="https://github.com/soedar">Soedarsono</a>
+        </div>
+    </div>
+</footer>
 
 </body>
 
